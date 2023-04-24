@@ -17,7 +17,7 @@ REACT_APP_SOCKET_URL
   
 ## Ejecutar la aplicación
 
-1.  Ejecute el comando `$ npm run start
+1. Ejecute el comando `$ npm run start
 2. Visite `http://localhost:3000`
 3. Disfrute
 
@@ -38,7 +38,14 @@ address-book
     - model        -Carpeta con el modelo de datos utilizado en la app  
     - services     -Carpeta contiene los controladores y servicios que comican el back-front  
     - views        -Capeta con los archivos principales de las vistas  
-  
+
+## Funcionamiento del socket:
+El socket se ejecuta en segundo plano al cargar la pagina, pero se puede ver la lectura de los eventos en la consola  
+Cuando un nuevo contacto es recibido, la aplicación lo agrega automáticamente a la lista de contactos y muestra un  
+mensaje en la parte inferior izquierda de la pantalla.  
+El tiempo de espera de respuesta es de máximo 2 minutos y de inactividad de máximo 5 minutos.
+
+
 ---
 # Address book Crud ReactJS
 Crud made using React Js, Axios, Bootstrap.
