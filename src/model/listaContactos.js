@@ -8,6 +8,7 @@ export default class ListaContactos {
         lista.map((contacto) => {
             let nuevoContacto = new Contacto(contacto);
             this.contactos.push(nuevoContacto);
+            return true;
         })
     }
 

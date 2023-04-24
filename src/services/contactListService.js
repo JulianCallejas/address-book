@@ -1,6 +1,5 @@
 import apiInstance from "./apiConnection";
 
-
 const getContactos = async () => {
     try {
         const headers = {
@@ -46,7 +45,6 @@ const putContacto = async(newContact, setSpiner=(spiner)=>{}) =>{
             "method": "PUT",
             "Content-Type": "application/json"
         };
-        console.log("new", newContact);
         const body = {
             "nombre": newContact.nombre,
             "apellido": newContact.apellido,
@@ -55,7 +53,6 @@ const putContacto = async(newContact, setSpiner=(spiner)=>{}) =>{
             "email": newContact.email,
             "comentarios": newContact.comentarios
         }
-        console.log("bod", body);
         const response = await apiInstance.put("/contactos/" + newContact.id, body, headers);
         setSpiner("false");
         return response;
@@ -74,9 +71,7 @@ const deleteContacto = async(newContact, setSpiner=(spiner)=>{}) =>{
             "method": "DELETE",
             "Content-Type": "application/json"
         };
-        console.log("new", newContact);
         const response = await apiInstance.delete("/contactos/" + newContact.id, headers);
-        console.log("res", response);
         setSpiner("false");
         return response;
     } catch (error) {
@@ -84,7 +79,6 @@ const deleteContacto = async(newContact, setSpiner=(spiner)=>{}) =>{
         console.error(error);
         return error
     }
-
 };
 
 

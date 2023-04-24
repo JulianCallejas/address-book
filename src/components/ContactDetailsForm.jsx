@@ -11,32 +11,20 @@ import ToastMessage from './ToastMessage';
 
 function ContactDetailsForm({ detalleContacto, getDetalleContacto, cargarContactosApi }) {
 
-
     const [registro, setRegistro] = useState(new Contacto("", "", "", "", ""));
     const [showSpiner, setShowSpiner] = useState(false);
     const [toastMessage, setToastMessage] = useState(["afkhsañsk", "dsahfkasjh"]);
     const addContact = useRef(null);
 
-    useEffect(() => {
-        setRegistro({ ...detalleContacto });
-        // eslint-disable-next-line
-        const tooltip6 = new Tooltip(addContact.current, {
-            title: "Agregar Contacto",
-        });
-    }, [detalleContacto]);
-
     const actualizaRegistro = (campo) => {
         setRegistro({ ...registro, ...campo });
     };
-
     
     const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log("reg", registro)
         if (registro.id === "0") {
             let response = await CONTACTOS_ENDPOINTS.CREAR(registro, setShowSpiner);
             if (response.status >= 200 && response.status < 203) {
-                console.log(response)
                 setToastMessage(["Contacto Creado", "El contacto fue agregado correctamente"]);
                 showMessage();
                 cargarContactosApi();
@@ -48,7 +36,6 @@ function ContactDetailsForm({ detalleContacto, getDetalleContacto, cargarContact
         } else {
             let response = await CONTACTOS_ENDPOINTS.MODIFICAR(registro, setShowSpiner);
             if (response.status >= 200 && response.status < 203) {
-                console.log(response)
                 setToastMessage(["Contacto Modificado", "Cambios guardados correctamente"]);
                 showMessage();
                 cargarContactosApi();
@@ -63,7 +50,6 @@ function ContactDetailsForm({ detalleContacto, getDetalleContacto, cargarContact
         
         let response = await CONTACTOS_ENDPOINTS.ELIMINAR(registro, setShowSpiner);
             if (response.status >= 200 && response.status < 203) {
-                console.log(response)
                 setToastMessage(["Contacto Eliminado", "El contacto ha sido eliminado"]);
                 showMessage();
                 setRegistro(new Contacto("", "", "", "", ""));
@@ -72,7 +58,6 @@ function ContactDetailsForm({ detalleContacto, getDetalleContacto, cargarContact
                 setToastMessage(["Error", "No se pudo eliminar el contacto, intente de nuevo"]);
                 showMessage();
             }
-
     };
 
     const agregarCotactoButton=()=>{
@@ -87,23 +72,31 @@ function ContactDetailsForm({ detalleContacto, getDetalleContacto, cargarContact
         toast.show();
     }
 
+    useEffect(() => {
+        setRegistro({ ...detalleContacto });
+        // eslint-disable-next-line
+        const tooltip6 = new Tooltip(addContact.current, {
+            title: "Agregar Contacto",
+        });
+    }, [detalleContacto]);
+
     return (
         <div className="col-md-6 d-flex align-items-stretch contact-detail-container">
             <div className="contact-wrap w-100 p-md-5 p-4">
                 <h3 className="mb-4"> Información de Contato
                     <button className="btn btn-guardar ms-5"
                         ref={addContact}
+                        data-bs-toggle="tooltip"
+                        data-bs-placement="top" 
                         type="button"
-                        title='Nuevo contacto'
+                        title='addContact'
                         onClick={ agregarCotactoButton }
                     >
                         <i className="bi bi-person-plus-fill"></i>
                     </button>
                 </h3>
                 <form id="contactListForm" name="contactListForm" onSubmit={(e) => { handleSubmit(e) }}>
-
                     <ToastMessage toastMessage={toastMessage} />
-
                     <div className="row">
                         <div className="col-md-6 p-2">
                             <div className="input-group mb-2">
@@ -189,8 +182,6 @@ function ContactDetailsForm({ detalleContacto, getDetalleContacto, cargarContact
                                     onChange={(e) => { actualizaRegistro({ comentarios: e.target.value }) }} />
                             </div>
                         </div>
-
-
                         <div className="col-md-12">
                             <div className="form-group align">
                                 {registro.id === "0" ? (
@@ -224,7 +215,6 @@ function ContactDetailsForm({ detalleContacto, getDetalleContacto, cargarContact
                     </div>
                 </form>
             </div>
-
             <div className="modal fade" id="confirmationModal" data-bs-backdrop="static" data-bs-keyboard="false" tabIndex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                 <div className="modal-dialog">
                     <div className="modal-content">

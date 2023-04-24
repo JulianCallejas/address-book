@@ -2,19 +2,17 @@ import React, { useEffect, useState } from 'react'
 
 
 function ContactListFilterBox({ listaContactos, getDetalleContacto }) {
-    console.log(listaContactos.contactos[0])
+    
     const [contactos, setContactos] = useState({contactos:[]});
     const [filtro, setFiltro] = useState('');
-
-    useEffect(() => {
-        setContactos(listaContactos);
-    }, [listaContactos]);
-
-    console.log("listadoBox",contactos.contactos);
 
     const mostrarDetalleContacto =(contacto)=>{
         getDetalleContacto(contacto);
     }
+
+    useEffect(() => {
+        setContactos(listaContactos);
+    }, [listaContactos]);
 
     const contactosFiltrados = () => {
         if (contactos && contactos.contactos.length > 0) {
@@ -24,10 +22,10 @@ function ContactListFilterBox({ listaContactos, getDetalleContacto }) {
                     <>
                         {contactosFil.map((contacto) => {
                             return (
-                                <div className="contact-list-name text-start" key={contacto.id + '-' + contacto.nombre}
+                                <div className="contact-list-name text-start lh-1 pb-3 ps-3" key={contacto.id + '-' + contacto.nombre}
                                 onClick={()=>mostrarDetalleContacto(contacto) }
                                 >
-                                    <p>{contacto.nombre} {contacto.apellido}</p>
+                                    <p > {contacto.nombre} {contacto.apellido}</p>
                                     <p className='border-bottom border-light border-opacity-25'><i className="bi bi-phone "></i> {contacto.telefono}</p>
                                 </div>
                             )
@@ -40,9 +38,7 @@ function ContactListFilterBox({ listaContactos, getDetalleContacto }) {
                         {contactos.contactos.map((contacto) => {
                             return (
                                 <div className="contact-list-name text-start lh-1 pb-3 ps-3" key={contacto.id + '-' + contacto.nombre}
-                                onClick={()=>{
-                                    getDetalleContacto(contacto)
-                                } }
+                                onClick={()=>mostrarDetalleContacto(contacto) }
                                 >
                                     <p > {contacto.nombre} {contacto.apellido}</p>
                                     <p className='border-bottom border-light border-opacity-25'><i className="bi bi-phone "></i> {contacto.telefono}</p>
