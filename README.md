@@ -4,67 +4,68 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## Available Scripts
 
-In the project directory, you can run:
+# Address book Crud ReactJS
+Crud hecho usando React Js, Axios y Bootstrap
 
-### `npm start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Instalación
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Es necesario tener Node Js instalado.
 
-### `npm test`
+1. Instale Node Js: [Node web](https://nodejs.org/)
+2. Clone el repositorio
+3. Ejecute `$ npm install para instalar las dependencias
+4. En la ruta base del repositorio cree un archivo .env que contenga las siguientes variables:
+REACT_APP_BASE_URL
+REACT_APP_SOCKET_URL
+  REACT_APP_BASE_URL contendrá la dirección para conectar con la API
+  REACT_APP_SOCKET_URL contendrá la dirección para conectar con el websocket
+  
+## Ejecutar la aplicación
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+1.  Ejecute el comando `$ npm run start
+2. Visite `http://localhost:3000`
+3. Disfrute
 
-### `npm run build`
+## Dependencias:
+    "axios": "^1.3.6",
+    "bootstrap": "^5.3.0-alpha3",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.10.0"
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Estructura de directorios:
+La estructura se realizó siguiendo patrón de modelo, vista, controlador
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+address-book
+  |
+  |public     - Carpeta que contiene el archivo html principal
+  |src        - Carpeta que contiene los arcivos con el código de la app
+    |
+    |components   -Carpeta que contiene componentes que se renderizan en la vista
+    |model        -Carpeta con el modelo de datos utilizado en la app
+    |services     -Carpeta contiene los controladores y servicios que comican el back-front
+    |views        -Capeta con los archivos principales de las vistas
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+---
+# Address book Crud ReactJS
+Crud made using React Js, Axios, Bootstrap.
 
-### `npm run eject`
+## Set up
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+You'll need [Node.js](https://nodejs.org/) on your local development machine.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+1. Install Node Js: [Node web](https://nodejs.org/)
+2. Clone the repo
+3. Run `$ npm install to install the dependencies
+4. Create a .env file at the base floder with the next variables:
+REACT_APP_BASE_URL
+REACT_APP_SOCKET_URL
+  REACT_APP_BASE_URL should be equal to the API-Rest url address
+  REACT_APP_SOCKET_URL should be equal to the websocket url address
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## Up and running
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+1.  Run `$ npm run start
+2. Visit `http://localhost:3000`
+3. Enjoy :)
