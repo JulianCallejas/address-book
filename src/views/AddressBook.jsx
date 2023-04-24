@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import Pusher from 'pusher-js';
 
 import Contacto from '../model/contacto'
@@ -47,21 +47,27 @@ function AddressBook() {
             console.log('Recibido:', event);
             const data = JSON.parse(event.data);
             console.log(data);
-            if (data.channel === 'address-book') {
+            if (data.channel === 'address-book' && data.event !=="pusher_internal:subscription_succeeded") {
                 console.log('Nuevo mensaje:', data);
+                contactosRecibidos.current.push(JSON.parse(data.data));
+                setTimeout(() => {
+                    saveWbsocketContact();    
+                }, 200);
             }
             return data;
         };
         ws.onerror = (error)=>{}
-
     }
 
+    
 
 
 
 
     const [listaContactos, setListaContactos] = useState(new ListaContactos([]));
     const [detalleContacto, setDetalleContacto] = useState(new Contacto("", "", "", ""));
+    const [contactoSocket, setContactoSocket] = useState(false);
+    const contactosRecibidos = useRef([])
 
     const getDetalleContacto = (contacto) => {
         setDetalleContacto("");
@@ -71,6 +77,7 @@ function AddressBook() {
 
     const cargarContactosLocal = async () => {
         let data = await CONTACTOS_LOCALSTORAGE.LOAD();
+        return data;
     }
 
     const cargarContactosApi = async () => {
@@ -79,9 +86,36 @@ function AddressBook() {
         CONTACTOS_LOCALSTORAGE.SAVE(new ListaContactos(data).contactos);
     }
 
+    const saveWbsocketContact = ()=>{
+        contactosRecibidos.current.map(async (data)=>{
+            console.log("save",data);
+        if (!listaContactos.emailExists(data.email)){
+            let newContact = new Contacto("","","","","");
+            newContact.nombre = data.name.split(" ").length>3 ? data.name.split(" ")[0] + " " + data.name.split(" ")[1] :data.name.split(" ")[0];
+            newContact.apellido = data.name.replace(newContact.nombre, '');
+            newContact.telefono = data.phone;
+            newContact.email = data.email;
+            newContact.comentarios = data.message;
+            let response = await CONTACTOS_ENDPOINTS.CREAR(newContact);
+            if (response.status >= 200 && response.status < 203) {
+                console.log(response)
+                cargarContactosApi();
+                setContactoSocket(true);
+                let timer = setTimeout(() => {
+                    setContactoSocket(false);
+                }, 1500);
+            } else {
+                console.log(response);
+            }
+        }
+        });
+        contactosRecibidos.current = [];
+    }
+
     useEffect(() => {
         cargarContactosLocal();
         cargarContactosApi();
+        listenWebsocket();
 
     }, [])
 
@@ -102,6 +136,9 @@ function AddressBook() {
                     </div>
                 </div>
             </div>
+            {contactoSocket && (<div id="socketMessage" className="socket-message-container">
+                <p>Contacto recibido...</p>
+            </div>)}
         </div>
     )
 }

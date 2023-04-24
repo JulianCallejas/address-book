@@ -107,20 +107,22 @@ function ContactDetailsForm({ detalleContacto, getDetalleContacto, cargarContact
                     <div className="row">
                         <div className="col-md-6 p-2">
                             <div className="input-group mb-2">
-                                <span className="input-group-text" id="basic-addon1"><i className="bi bi-file-earmark-person"></i></span>
+                                <span className="input-group-text" id="nombre-addon1"><i className="bi bi-file-earmark-person"></i></span>
                                 <input type="text"
                                     className="form-control"
-                                    name="nombre" id="nombre"
+                                    name="nombre" 
+                                    id="nombre"
                                     placeholder="Nombres"
                                     maxLength={40}
                                     value={registro.nombre}
-                                    onChange={(e) => { actualizaRegistro({ nombre: e.target.value }) }}
+                                    onChange={(e) => { actualizaRegistro({ nombre: e.target.value })}}
+                                    onBlur={(e) => { actualizaRegistro({ nombre: e.target.value.trim() })}}
                                     required />
                             </div>
                         </div>
                         <div className="col-md-6 p-2">
                             <div className="input-group mb-2">
-                                <span className="input-group-text" id="basic-addon1"><i className="bi bi-file-earmark-person"></i></span>
+                                <span className="input-group-text" id="apellido-addon1"><i className="bi bi-file-earmark-person"></i></span>
                                 <input type="text"
                                     className="form-control"
                                     name="apellido"
@@ -128,13 +130,14 @@ function ContactDetailsForm({ detalleContacto, getDetalleContacto, cargarContact
                                     placeholder="Apellidos"
                                     maxLength={40}
                                     value={registro.apellido}
-                                    onChange={(e) => { actualizaRegistro({ apellido: e.target.value }) }}
+                                    onChange={(e) => { actualizaRegistro({ apellido: e.target.value })}}
+                                    onBlur={(e) => { actualizaRegistro({ apellido: e.target.value.trim() })}}
                                     required />
                             </div>
                         </div>
                         <div className="col-md-12 p-2">
                             <div className="input-group mb-2">
-                                <span className="input-group-text" id="basic-addon1"><i className="bi bi-phone"></i></span>
+                                <span className="input-group-text" id="telefono-addon1"><i className="bi bi-phone"></i></span>
                                 <input type="text"
                                     className="form-control"
                                     data-mdb-input-mask="999-999-9999"
@@ -143,13 +146,14 @@ function ContactDetailsForm({ detalleContacto, getDetalleContacto, cargarContact
                                     placeholder="Teléfono"
                                     maxLength={20}
                                     value={registro.telefono}
-                                    onChange={(e) => { actualizaRegistro({ telefono: e.target.value }) }}
+                                    onChange={(e) => { actualizaRegistro({ telefono: e.target.value })}}
+                                    onBlur={(e) => { actualizaRegistro({ telefono: e.target.value.trim() })}}
                                     required />
                             </div>
                         </div>
                         <div className="col-md-12 p-2 mb-2">
                             <div className="input-group mb-2">
-                                <span className="input-group-text" id="basic-addon1"><i className="bi bi-geo-alt"></i></span>
+                                <span className="input-group-text" id="direccion-addon1"><i className="bi bi-geo-alt"></i></span>
                                 <input type="text"
                                     className="form-control"
                                     name="direccion"
@@ -157,11 +161,37 @@ function ContactDetailsForm({ detalleContacto, getDetalleContacto, cargarContact
                                     placeholder="Dirección"
                                     value={registro.direccion}
                                     onChange={(e) => { actualizaRegistro({ direccion: e.target.value }) }}
+                                    onBlur={(e) => { actualizaRegistro({ direccion: e.target.value.trim() }) }}
                                     required />
                             </div>
                         </div>
-                        <div className="col-md-12">
+                        <div className="col-md-12 p-2 mb-2">
+                            <div className="input-group mb-2">
+                                <span className="input-group-text" id="emailc"><i className="bi bi-envelope-at"></i></span>
+                                <input type="email"
+                                    className="form-control"
+                                    name="email"
+                                    id="email"
+                                    placeholder="Email"
+                                    value={registro.email}
+                                    onChange={(e) => { actualizaRegistro({ email: e.target.value }) }} />
+                            </div>
+                        </div>
+                        <div className="col-md-12 p-2 mb-2">
+                            <div className="input-group mb-2">
+                                <span className="input-group-text" id="ecomentarios"><i className="bi bi-blockquote-left"></i></span>
+                                <textarea type="text"
+                                    className="form-control"
+                                    name="comentarios"
+                                    id="comentarios"
+                                    placeholder="Comentarios"
+                                    value={registro.comentarios}
+                                    onChange={(e) => { actualizaRegistro({ comentarios: e.target.value }) }} />
+                            </div>
+                        </div>
 
+
+                        <div className="col-md-12">
                             <div className="form-group align">
                                 {registro.id === "0" ? (
                                     <button className="btn btn-guardar me-2" type="submit" disabled={showSpiner === "agregar"}>

@@ -43,5 +43,20 @@ export default class ListaContactos {
         return contacto;
     }
 
+    getContactoByTelefono(telefono) {
+        let contacto = this.contactos.filter(contacto => contacto.telefono === telefono);
+        return contacto;
+    }
+
+    getContactoByEmail(email) {
+        let contacto = this.contactos.filter(contacto => contacto.email === email);
+        return contacto;
+    }
+
+    emailExists(email) {
+        let contacto = this.contactos.filter(contacto => contacto.email === email);
+        return contacto.length > 0;
+    }
+
 
 };

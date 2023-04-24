@@ -25,7 +25,9 @@ const postContacto = async(newContact, setSpiner=(spiner)=>{}) =>{
             "nombre": newContact.nombre,
             "apellido": newContact.apellido,
             "telefono": newContact.telefono,
-            "direccion": newContact.direccion
+            "direccion": newContact.direccion,
+            "email": newContact.email,
+            "comentarios": newContact.comentarios
         };
         const response = await apiInstance.post("/contactos", body, headers);
         setSpiner("false");
@@ -49,7 +51,9 @@ const putContacto = async(newContact, setSpiner=(spiner)=>{}) =>{
             "nombre": newContact.nombre,
             "apellido": newContact.apellido,
             "telefono": newContact.telefono,
-            "direccion": newContact.direccion
+            "direccion": newContact.direccion,
+            "email": newContact.email,
+            "comentarios": newContact.comentarios
         }
         console.log("bod", body);
         const response = await apiInstance.put("/contactos/" + newContact.id, body, headers);
@@ -82,7 +86,6 @@ const deleteContacto = async(newContact, setSpiner=(spiner)=>{}) =>{
     }
 
 };
-
 
 
 const CONTACTOS_ENDPOINTS ={
