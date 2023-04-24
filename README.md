@@ -31,13 +31,13 @@ REACT_APP_SOCKET_URL
 ## Estructura de directorios:
 La estructura se realizó siguiendo patrón de modelo, vista, controlador  
 
-* address-book  
-    * public     - Carpeta que contiene el archivo html principal  
-    * src        - Carpeta que contiene los arcivos con el código de la app  
-    1.2.1 components   -Carpeta que contiene componentes que se renderizan en la vista  
-    1.2.2 model        -Carpeta con el modelo de datos utilizado en la app  
-    1.2.3 services     -Carpeta contiene los controladores y servicios que comican el back-front  
-    1.2.4 views        -Capeta con los archivos principales de las vistas  
+address-book  
++ public     - Carpeta que contiene el archivo html principal  
++ src        - Carpeta que contiene los arcivos con el código de la app  
+    + components   -Carpeta que contiene componentes que se renderizan en la vista  
+    + model        -Carpeta con el modelo de datos utilizado en la app  
+    + services     -Carpeta contiene los controladores y servicios que comican el back-front  
+    + views        -Capeta con los archivos principales de las vistas  
   
 ---
 # Address book Crud ReactJS
