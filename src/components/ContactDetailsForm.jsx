@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react'
-import { Toast, Tooltip } from 'bootstrap';
+import { Toast, /*Tooltip*/ } from 'bootstrap';
 
 import Contacto from '../model/contacto'
 
@@ -75,25 +75,26 @@ function ContactDetailsForm({ detalleContacto, getDetalleContacto, cargarContact
     useEffect(() => {
         setRegistro({ ...detalleContacto });
         // eslint-disable-next-line
-        const tooltip6 = new Tooltip(addContact.current, {
-            title: "Agregar Contacto",
-        });
+        // const tooltip6 = new Tooltip(addContact.current, {
+        //     title: "Agregar Contacto",
+        // });
     }, [detalleContacto]);
 
     return (
         <div className="col-md-6 d-flex align-items-stretch contact-detail-container">
             <div className="contact-wrap w-100 p-md-5 p-4">
                 <h3 className="mb-4"> Información de Contato
-                    <button className="btn btn-guardar ms-5"
+                    <div className="btn btn-guardar ms-5"
                         ref={addContact}
-                        data-bs-toggle="tooltip"
-                        data-bs-placement="top" 
-                        type="button"
-                        title='addContact'
+                        data-bs-toggle="tooltip" 
+                        data-bs-placement="top"
+                        data-bs-custom-class="custom-tooltip"
+                        data-bs-title="Agregar contacto"
+                        title="Agregar contacto"
                         onClick={ agregarCotactoButton }
                     >
                         <i className="bi bi-person-plus-fill"></i>
-                    </button>
+                    </div>
                 </h3>
                 <form id="contactListForm" name="contactListForm" onSubmit={(e) => { handleSubmit(e) }}>
                     <ToastMessage toastMessage={toastMessage} />
