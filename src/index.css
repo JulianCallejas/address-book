@@ -5,7 +5,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  height:100%;
+  height: 100%;
   background-color: #e7e7e7 !important;
 }
 
@@ -14,63 +14,70 @@ code {
     monospace;
 }
 
-.header_logo{
+.header_logo {
   max-height: 30.41px;
 }
 
-.icon-link{
+.icon-link {
   color: #999 !important;
 }
 
-.icon-link:hover{
+.icon-link:hover {
   color: black !important;
   transition: color 1s ease;
 
 }
 
-.contact-container{
+.contact-container {
   min-height: 600px !important;
 }
 
-.contact-list-container{
+.contact-list-container {
   min-height: 450px;
   max-height: 600px;
   max-width: 92%;
   margin-left: 5%;
-  background-color:rgb(0, 81, 152) !important;
+  background-color: rgb(0, 81, 152) !important;
 }
 
-.contact-list-container .contact-list-name{
-  cursor:pointer;
+.contact-list-container .contact-list-name {
+  cursor: pointer;
 }
 
-.contact-detail-container{
+.contact-detail-container {
   background-color: white;
   margin-left: -2.5%;
 }
 
-.btn-guardar{
-  background-color:rgb(0, 81, 152) !important;
+.btn-guardar {
+  background-color: rgb(0, 81, 152) !important;
   color: white !important;
 }
 
-.btn-guardar:hover{
-    outline: none;
-    opacity: 1;
-    color: #fff;
-    box-shadow: inset 0 0 0 100px rgba(0,0,0,0.2);
-  }
+.btn-guardar:hover {
+  outline: none;
+  opacity: 1;
+  color: #fff;
+  box-shadow: inset 0 0 0 100px rgba(0, 0, 0, 0.2);
+}
 
-  .socket-message-container{
-    position: fixed;
-    bottom: 0;
-    left: 20px;
-    background-color: rgba(0, 81, 152,0.5);
-    color: white;
-    height: 30px;
-    width: 250px;
-    text-align: left;
-    padding-left: 16px;
-    padding-top: 2px;
-    border-radius: 12px;
-  }
+.socket-message-container {
+  position: fixed;
+  bottom: 0;
+  left: 20px;
+  background-color: rgba(0, 81, 152, 0.5);
+  color: white;
+  height: 30px;
+  width: 250px;
+  text-align: left;
+  padding-left: 16px;
+  padding-top: 2px;
+  border-radius: 12px;
+}
+
+.btn-abrir-socket {
+  display: table;
+  position: fixed;
+  left: 10px;
+  top: 100px;
+}

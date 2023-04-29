@@ -16,8 +16,11 @@ function AddressBook() {
 
     const [listaContactos, setListaContactos] = useState(new ListaContactos([]));
     const [detalleContacto, setDetalleContacto] = useState(new Contacto("", "", "", ""));
+    const [openedSocket, setOpenedSocket] = useState(false);
     const [contactoSocket, setContactoSocket] = useState(false);
     const contactosRecibidos = useRef([]);
+    
+    let ws;
 
     const getDetalleContacto = (contacto) => {
         setDetalleContacto("");
@@ -37,7 +40,7 @@ function AddressBook() {
 
     const listenWebsocket = async () => {
         const SOCKET_URL = process.env.REACT_APP_SOCKET_URL || "wss://wstest.technisupport.co/app/testws";
-        const ws = await new WebSocket(SOCKET_URL);
+        ws = await new WebSocket(SOCKET_URL);
         ws.onopen = () => {
             console.log('Conectado al servidor');
             console.log(ws);
@@ -48,6 +51,7 @@ function AddressBook() {
                 }
             };
             ws.send(JSON.stringify(message));
+            setOpenedSocket(true);
         };
         var activityTimer="";
         var msgCount = 0;
@@ -77,8 +81,15 @@ function AddressBook() {
             return data;
         };
         ws.onerror = (error) => { }
-        ws.onclose = () => {console.log("Conexion cerrada")}
+        ws.onclose = () => {
+            console.log("Conexion cerrada")
+            setOpenedSocket(false);
+        }
     }
+
+    const closeWebSocket = () => {
+        ws.close();
+    };
 
     const saveWbsocketContact = () => {
         contactosRecibidos.current.map((data) => {
@@ -95,7 +106,7 @@ function AddressBook() {
                         setContactoSocket(true);
                         setTimeout(() => {
                             setContactoSocket(false);
-                        }, 1500);
+                        }, 2500);
                     } else {
                         console.log(response);
                     }
@@ -109,12 +120,16 @@ function AddressBook() {
     useEffect(() => {
         cargarContactosLocal();
         cargarContactosApi();
-        listenWebsocket();
+        //listenWebsocket();
         // eslint-disable-next-line
     }, [])
 
     return (
         <div className='w-100 text-center'>
+            {!openedSocket ? 
+            <button type='button' onClick={listenWebsocket} className='btn btn-guardar btn-abrir-socket'>Abrir socket</button>
+            :
+            <button type='button' onClick={closeWebSocket} className='btn btn-guardar btn-abrir-socket'>Cerrar socket</button>}
             <h2 className='mb-1 mt-5'><i className="bi bi-person-vcard"></i> Address-Book</h2>
             <div className='contact-container d-flex align-items-center'>
                 <div className="row justify-content-center w-100 ">
